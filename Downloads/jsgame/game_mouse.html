@@ -3,9 +3,9 @@
 	<title></title>
 </head>
 <body>
-	<button onclick="startGame()">New</button>
-	<div id="score">0</div>
-	<canvas id="paper" width="400" height="400">
+	<button onclick="startGame()">New Game</button> 
+	<div id="ssss"></div>
+	<canvas id="paper" width="500" height="450"> // change cava pixel
 	</canvas>
 </body>
 	<script type="text/javascript">		
@@ -19,12 +19,12 @@
 			color: 'red',
 			v: 100,
 			moveTo: function(x, y, ms){
-				var st = this.v * ms / 1000;
+				var st = this.v * ms / 5500; //
 				var diffy = y - this.y;
 				var diffx = x - this.x;
 				var zeta = Math.atan(Math.abs((y - this.y)/(x - this.x)));				
-				var dy = diffy < 0 ? - 1 : 1;
-				var dx = diffx < 0 ? -1 : 1;				
+				var dy = diffy < 0 ? - 50 : 150; //speedy
+				var dx = diffx < 0 ? -5 : 50;				
 				if(!isNaN(zeta)){
 					this.x += Math.cos(zeta) * st * dx;
 					this.y += Math.sin(zeta) * st * dy;	
@@ -48,7 +48,7 @@
 		setInterval(function(){
 			var deadEnemyIndices = [];
 			for(var i = 0; i < enemies.length; i++){
-				enemies[i].live(1000);
+				enemies[i].live(12); // Leave some more Enermies
 				if(!enemies[i].isAlive())
 					deadEnemyIndices.push(i);
 			}
@@ -56,8 +56,8 @@
 				enemies.splice(deadEnemyIndices[i], 1);
 			}
 			enemies.push(new Enemy());
-			score += 1;
-			document.getElementById('score').innerHTML = '' + score;
+			score += 5;
+			document.getElementById('ssss').innerHTML = '' + score;
 		}, 1000);
 		function draw(){
 			if(gameRunning){			
@@ -68,6 +68,7 @@
 				}
 				if(isHit()){
 		        	console.log('Game Over');
+					
 		        	gameRunning = false;
 		        }
 
