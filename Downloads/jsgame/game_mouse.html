@@ -5,7 +5,7 @@
 <body>
 	<button onclick="startGame()">New Game</button> 
 	<div id="ssss"></div>
-	<canvas id="paper" width="500" height="450"> // change cava pixel
+	<canvas id="paper" width="1920" height="1150"> // change cava pixel
 	</canvas>
 </body>
 	<script type="text/javascript">		
@@ -13,21 +13,21 @@
 		var targetX = canvas.width / 2;
 		var targetY = canvas.height / 2;
 		var ship =  {
-			x: 0, 
-			y: 0,
-			radius: 5,
+			x: 10, 
+			y: 5,
+			radius: 30,
 			color: 'red',
 			v: 100,
 			moveTo: function(x, y, ms){
-				var st = this.v * ms / 5500; //
+				var st = this.v * ms / 900; //
 				var diffy = y - this.y;
 				var diffx = x - this.x;
 				var zeta = Math.atan(Math.abs((y - this.y)/(x - this.x)));				
-				var dy = diffy < 0 ? - 50 : 150; //speedy
-				var dx = diffx < 0 ? -5 : 50;				
+				var dy = diffy < 0 ? - 50 : 60; 
+				var dx = diffx < 0 ? -50 : 90;				
 				if(!isNaN(zeta)){
-					this.x += Math.cos(zeta) * st * dx;
-					this.y += Math.sin(zeta) * st * dy;	
+					this.x += Math.cos(zeta) * st * dx /200;
+					this.y += Math.sin(zeta) * st * dy/20;	
 				}
 				if(this.x > canvas.width)
 					this.x = canvas.width;
@@ -48,7 +48,7 @@
 		setInterval(function(){
 			var deadEnemyIndices = [];
 			for(var i = 0; i < enemies.length; i++){
-				enemies[i].live(12); // Leave some more Enermies
+				enemies[i].live(10); // Leave some more Enermies
 				if(!enemies[i].isAlive())
 					deadEnemyIndices.push(i);
 			}
@@ -103,7 +103,7 @@
 		}
 
 		function distance(x1, y1, x2, y2){
-			return Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+			return Math.sqrt(Math.pow(y2 - y1, 5) + Math.pow(x2 - x1, 2));
 		}
 
 		function onClick(x, y){
@@ -134,8 +134,8 @@
 			constructor(){
 				this.x = Math.floor(Math.random()*canvas.width);
 				this.y = Math.floor(Math.random()*canvas.height);
-				this.lifetime = 3000;
-				this.radius = 5;      		
+				this.lifetime = 300;
+				this.radius = 25;      		
 			}
 			live(ms){
 				this.lifetime -= ms;
