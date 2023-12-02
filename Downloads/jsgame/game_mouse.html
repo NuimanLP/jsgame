@@ -8,20 +8,35 @@
 	border: 2px solid yellow; 
 	 background-image: url('https://cdn.discordapp.com/attachments/1089566073994608650/1180326321239380049/download.jpg?ex=657d038c&is=656a8e8c&hm=e060e69538c7957c6b1ca87a5d00e0607911211ef333fea91c867e367998587b&');
 	 font-weight: bold;
+	 font-size: 18px;
 	 top: 50px;  left: 100px;
-	 ">New Game</button>
+	 ">Start Game</button>
+
 	<div id="ssss"></div> score
 	<img src="https://cdn.discordapp.com/attachments/1089566073994608650/1180327567400652820/download_1.jpg?ex=657d04b5&is=656a8fb5&hm=b20710d444c1cb90bedc146385e9a238e0c4c5daf198bec838c0081fd4198a10&" 
 
-	style="width:2%;height: 5; position: absolute;
-	opacity: 0.8; top: 92px; left: 10px;
+	style="width:2%;height: 5;
+	 position: absolute;
+	 opacity: 0.8; 
+	 top: 92px; 
+	 left: 10px;
 	" >
 
-	<div id="gameOverText" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 39px; font-weight: bold; border: 9px solid;color: gold;">Congratulation </div> //game over display
-	
+	<div id="gameOverText" style="display: none; position: absolute; top: 50%; left: 50%;
+	 transform: translate(-50%, -50%); 
+	 font-size: 39px; 
+	 font-weight: bold;
+	 border: 9px solid;
+	color: gold;">Congratulation </div> //click start game and play audio 'WASD'
 
 	<canvas id="paper" width="1520" height="1520"> // change cava pixel</canvas>
-</body>
+	
+	<div	style="position:absolute;	left: 200px;	top: 9px;">
+		<audio controls autoplay loop>
+		  <source src="8bit.mp3" type="audio/mpeg">
+		  <!-- <source src="deatch.mp3" type="audio/mpeg"> -->
+		</audio>
+	</div>
 <style>
 	body {
 	  background-image: url('https://img.freepik.com/free-vector/white-grid-line-pattern-gray-background_53876-99015.jpg');
@@ -39,14 +54,14 @@
 			v: 100, //velocityna
 	
 			moveTo: function(x, y, ms){
-				var st = this.v * ms / 200; //
+				var st = this.v * ms / 2000; //
 				var diffy = y - this.y;
 				var diffx = x - this.x;
 				var zeta = Math.atan(Math.abs((y - this.y)/(x - this.x)));				
 				var dy = diffy < 0 ? - 50 : 60; 
 				var dx = diffx < 0 ? -50 : 70;				
 				if(!isNaN(zeta)){
-					this.x += Math.cos(zeta) * st * dx /50;
+					this.x += Math.cos(zeta) * st * dx /20;
 					this.y += Math.sin(zeta) * st * dy/20;	
 				}
 				if(this.x > canvas.width)
