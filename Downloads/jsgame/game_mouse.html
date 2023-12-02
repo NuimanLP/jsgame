@@ -10,11 +10,11 @@
 	 font-weight: bold;
 	 top: 50px;  left: 100px;
 	 ">New Game</button>
-	<div id="ssss"></div>c
+	<div id="ssss"></div> score
 	<img src="https://cdn.discordapp.com/attachments/1089566073994608650/1180327567400652820/download_1.jpg?ex=657d04b5&is=656a8fb5&hm=b20710d444c1cb90bedc146385e9a238e0c4c5daf198bec838c0081fd4198a10&" 
 
-	style="width:1%;height: 5; position: absolute;
-	opacity: 0.8; 
+	style="width:2%;height: 5; position: absolute;
+	opacity: 0.8; top: 92px; left: 10px;
 	" >
 
 
@@ -28,11 +28,11 @@
 			x: 0, 
 			y: 0,
 			radius: 30,
-			color: 'red',
-			v: 100,
+			color: 'green',
+			v: 100, //velocityna
 	
 			moveTo: function(x, y, ms){
-				var st = this.v * ms / 90; //
+				var st = this.v * ms / 550; //
 				var diffy = y - this.y;
 				var diffx = x - this.x;
 				var zeta = Math.atan(Math.abs((y - this.y)/(x - this.x)));				
@@ -61,7 +61,7 @@
 		setInterval(function(){
 			var deadEnemyIndices = [];
 			for(var i = 0; i < enemies.length; i++){
-				enemies[i].live(10); // Leave some more Enermies
+				enemies[i].live(1000); // Leave some more Enermies
 				if(!enemies[i].isAlive())
 					deadEnemyIndices.push(i);
 			}
@@ -95,7 +95,7 @@
 		        for(var i = 0; i < enemies.length; i++){
 		        	context.beginPath();
 			        context.arc(enemies[i].x, enemies[i].y, enemies[i].radius, 0, 2 * Math.PI, false);
-			        context.fillStyle = 'blue';
+			        context.fillStyle = 'yellow';
 			        context.fill();
 		        }
 		      
@@ -130,24 +130,40 @@
 			score = 0;
 		}
 		
-        canvas.addEventListener('mousemove', function(evt) {
-	        var rect = canvas.getBoundingClientRect();
-	        targetX = evt.clientX - rect.left;
-	        targetY = evt.clientY - rect.top;	 
-      	}, false);
+        // canvas.addEventListener('mousemove', function(evt) {
+	    //     var rect = canvas.getBoundingClientRect();
+	    //     targetX = evt.clientX - rect.left;
+	    //     targetY = evt.clientY - rect.top;	 
+      	// }, false);
 
-      	canvas.addEventListener('mousedown', function(evt) {
-	        var rect = canvas.getBoundingClientRect();
-	        var x = evt.clientX - rect.left;
-	        var y = evt.clientY - rect.top;	 
-	        onClick(x, y);
-      	}, false);
+      	// canvas.addEventListener('mousedown', function(evt) {
+	    //     var rect = canvas.getBoundingClientRect();
+	    //     var x = evt.clientX - rect.left;
+	    //     var y = evt.clientY - rect.top;	 
+	    //     onClick(x, y);
+      	// }, false);
+		document.addEventListener('keydown', function (evt) {
+			switch (event.key) {
+				case 'w':
+				targetY -= 25;
+				break;
+				case 's':
+				targetY += 25;
+				break;
+				case 'a':
+				targetX -= 25;
+				break;
+				case 'd':
+				targetX += 25;
+				break;
+		}
+		});
 
 		class Enemy {
 			constructor(){
 				this.x = Math.floor(Math.random()*canvas.width);
 				this.y = Math.floor(Math.random()*canvas.height);
-				this.lifetime = 300;
+				this.lifetime = 3000;
 				this.radius = 25;      		
 			}
 			live(ms){
