@@ -17,6 +17,8 @@
 	opacity: 0.8; top: 92px; left: 10px;
 	" >
 
+	<div id="gameOverText" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 36px; font-weight: bold; color: red;">Game Over </div> //game over display
+	
 
 	<canvas id="paper" width="1520" height="1520"> // change cava pixel</canvas>
 </body>
@@ -82,9 +84,9 @@
 				if(isHit()){
 		        	console.log('Game Over');
 					
-		        	gameRunning = false;
+		        	gameRunning = false; 
+					 document.getElementById('gameOverText').style.display = 'block'; // game over  จ้่า
 		        }
-
 				var context = canvas.getContext('2d');
 				context.clearRect(0, 0, canvas.width, canvas.height);	
 				context.beginPath();
