@@ -17,15 +17,20 @@
 	opacity: 0.8; top: 92px; left: 10px;
 	" >
 
-	<div id="gameOverText" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 36px; font-weight: bold; color: red;">Game Over </div> //game over display
+	<div id="gameOverText" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 39px; font-weight: bold; border: 9px solid;color: gold;">Congratulation </div> //game over display
 	
 
 	<canvas id="paper" width="1520" height="1520"> // change cava pixel</canvas>
 </body>
+<style>
+	body {
+	  background-image: url('https://img.freepik.com/free-vector/white-grid-line-pattern-gray-background_53876-99015.jpg');
+	}
+	</style>
 	<script type="text/javascript">		
 		var canvas = document.getElementById("paper");
-		var targetX = canvas.width / 2;
-		var targetY = canvas.height / 2;
+		var targetX = canvas.width / 1.5;
+		var targetY = canvas.height / 1.5;
 		var ship =  {
 			x: 0, 
 			y: 0,
@@ -34,7 +39,7 @@
 			v: 100, //velocityna
 	
 			moveTo: function(x, y, ms){
-				var st = this.v * ms / 550; //
+				var st = this.v * ms / 200; //
 				var diffy = y - this.y;
 				var diffx = x - this.x;
 				var zeta = Math.atan(Math.abs((y - this.y)/(x - this.x)));				
@@ -48,7 +53,7 @@
 					this.x = canvas.width;
 				else if (this.x < 0)
 					this.x = 0;
-				if(this.y > canvas.height)
+				if(this.y > canvas.height) 
 					this.y = canvas.height;
 				else if(this.y < 0)
 					this.y = 0;	
@@ -71,7 +76,7 @@
 				enemies.splice(deadEnemyIndices[i], 1);
 			}
 			enemies.push(new Enemy());
-			score += 5;
+			score += 1;
 			document.getElementById('ssss').innerHTML = '' + score;
 		}, 1000);
 		function draw(){
@@ -85,7 +90,7 @@
 		        	console.log('Game Over');
 					
 		        	gameRunning = false; 
-					 document.getElementById('gameOverText').style.display = 'block'; // game over  จ้่า
+					document.getElementById('gameOverText').style.display = 'block'; // congrate  bro
 		        }
 				var context = canvas.getContext('2d');
 				context.clearRect(0, 0, canvas.width, canvas.height);	
@@ -97,7 +102,7 @@
 		        for(var i = 0; i < enemies.length; i++){
 		        	context.beginPath();
 			        context.arc(enemies[i].x, enemies[i].y, enemies[i].radius, 0, 2 * Math.PI, false);
-			        context.fillStyle = 'yellow';
+			        context.fillStyle = 'gold';
 			        context.fill();
 		        }
 		      
@@ -144,19 +149,20 @@
 	    //     var y = evt.clientY - rect.top;	 
 	    //     onClick(x, y);
       	// }, false);
+		
 		document.addEventListener('keydown', function (evt) {
 			switch (event.key) {
 				case 'w':
-				targetY -= 25;
+				targetY -= 12;
 				break;
 				case 's':
-				targetY += 25;
+				targetY += 12;
 				break;
 				case 'a':
-				targetX -= 25;
+				targetX -= 12;
 				break;
 				case 'd':
-				targetX += 25;
+				targetX += 12;
 				break;
 		}
 		});
