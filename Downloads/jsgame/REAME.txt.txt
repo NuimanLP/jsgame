@@ -1,3 +1,7 @@
+
+อ่าต้องเกริ่นก่อนนะครับว่า ผมใช้PCร่วมกับMac user ที่commit มันไม่เหมือนกัน ผมlock in เข้าไม่ได้เลยในPC(น่าจะเกิดจากชื่อ golbal config ไม่เหมือนกัน) เลยใช้ Login ด้วย Tokenเเทน 
+
+
 HOW TO PLAY:  JUST NEW GAME AND USE "WASD" pretty normal
 
 
